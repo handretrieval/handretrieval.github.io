@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description"
+      content="We hand the community HAND, a simple and time-efficient method for teaching robots new manipulation tasks through human hand demonstrations.">
+    <meta name="keywords"
+      content="Robot Adaptation, Retrieval, Play Data, Hand Demonstration">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HAND Me the Data: Fast Robot Adaptation via Hand Path Retrieval</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [['$', '$'], ['\\(', '\\)']],
+              displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          }
+      });
+    </script>
+    <script type="text/javascript" async
+  src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        .strap-highlight {
+            color: #00AFF0;
+            font-weight: bold;
+        }
+        .hand-highlight {
+            color: #F28E2B;
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+          <a class="navbar-item" href="https://aliang8@github.io">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More Research
+            </a>
+            <div class="navbar-dropdown">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">HAND Me the Data: Fast Robot Adaptation via Hand Path Retrieval</h1>
+              <!-- <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                    <a href="">N/A</a>
+                </span>
+              </div> -->
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"></span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link. -->
+                  <span class="link-block">
+                    <a href=""
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a href="https://github.com/handretrieval/hand"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p style="text-align: center; font-size: 24px; margin-bottom: 0px;">
+      <strong><em>We introduce HAND, a simple and time-efficient method for teaching robots new manipulation tasks through human hand demonstrations.</em></strong>
+    </p>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div style="text-align: center;">
+          <img src="./static/images/teaser_fig.png" alt="teaser_fig" style="width: 30%;">
+        </div>
+
+
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              We hand the community HAND, a simple and time-efficient method for teaching robots new manipulation tasks through human hand demonstrations.
+              Instead of relying on task-specific robot demonstrations collected via teleoperation, HAND uses easy-to-provide hand demonstrations to retrieve relevant behaviors from task-agnostic robot play data. 
+              Using a visual tracking pipeline, HAND extracts the motion of the human hand from the hand demonstration and retrieves robot sub-trajectories in two stages: first filtering by visual similarity, then retrieving trajectories with similar behaviors to the hand.
+              Fine-tuning a policy on the retrieved data enables <i>real-time learning of tasks</i> in under three minutes, without requiring calibrated cameras or detailed hand pose estimation.
+              Experiments in simulation and on real robots also show that HAND outperforms retrieval baselines by over $2 \times$ in task success rates.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="hero-body">
+        <div class="container is-max-desktop" style="text-align: center;">
+          <!-- <h3 class="title is-3">Overview</h3> -->
+
+          <h3 class="title is-3">HAND: Fast Robot Adaptation via Hand Path Retrieval</h3>
+
+          <div style="text-align: center;">
+            <img src="./static/images/hands.png" alt="hands_overview">
+          </div>
+          
+          <div class="content has-text-justified" style="font-size: 18px; text-align: center;">
+            <ol>
+              <li><b>Sub-Trajectory Preprocessing</b>: We first segment the hand demonstrations, $D_{\text{hand}}$, and the offline play dataset, $D_{\text{play}}$, into variable-length sub-trajectories using a simple heuristic based on proprioception.</li>
+              <li><b>Visual Filtering</b>: Before retrieving sub-trajectories with paths, we first run a visual filtering step to ensure that the sub-trajectories we retrieve will be task-relevant. We use an object-centric visual foundation model, namely DINOv2, to first filter out sub-trajectories performing unrelated tasks with different objects.</li>
+              <li><b>Retrieving Sub-Trajectories</b>: We then employ S-DTW to match the target sub-trajectories, $T_{\text{hand}}$, to the set of visually filtered segments, $T_{\text{play}}$.</li>
+              <li><b>Adapter Fine-tuning</b>: We leverage parameter-efficient fine-tuning using <i>task-specific adapters</i>—small trainable modules that modulate the behavior of the frozen base policy.</li>
+              <li><b>Loss Re-Weighting</b>: To prioritize the most behaviorally aligned examples, we reweight the BC loss with an exponential term following Advantage-Weighted Regression where each sub-trajectory is weighted based on its similarity (from S-DTW) to the hand demonstration.</li> 
+            </ol>
+          </div>
+          
+          <div style="text-align: center;">
+            <img src="./static/images/hand_pseudocode.png" alt="hand_pseudocode">
+          </div>
+
+          <br><br><br>
+          <h3 class="title is-3">Real Robot Evaluation Tasks</h3>
+
+          <div style="text-align: center;">
+            <figure></figure>
+              <img src="./static/images/real_robot_tasks.png" alt="real_robot_tasks">
+              <figcaption>
+                <p>
+                  We evaluate HAND on 5 different real robot tasks: Reach Block, Push Button, Close Microwave, Put Keurig in Coffee Machine, and Carrot Blender. The last two are long-horizon tasks, requiring more than 100 timesteps of execution.
+                </p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <br><br>
+
+          <div style="text-align: center;">
+            <figure>
+              <img src="./static/images/real_robot_results.png" alt="real_robot_results" style="width: 50%;">
+              <figcaption>
+                <p>
+                  Real-world single task retrieval experiment plotting # successes out of 10 of $\pi_\text{base}$, STRAP, and HAND.
+                </p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <br><br>
+
+          <h3 class="title is-3">Qualitative Retrieval Results from IPhone Hand Demonstration</h3>
+
+          <h4 class="title is-4" style="color: #cc0000;">HAND works with demos from unseen environments.</h4>
+
+          <div style="text-align: center;">
+            <img src="./static/images/iphone_retrieval_results.png" alt="iphone_retrieval_results">
+          </div>
+
+          <div class="content has-text-justified" style="font-size: 18px; text-align: center;">
+            We visualize the top sub-trajectory match of <span class="strap-highlight">STRAP</span>, <span class="hand-highlight">HAND</span> without visual filtering (<span class="hand-highlight">HAND(-VF)</span>), and <span class="hand-highlight">HAND</span> on two out-of-domain demonstrations recorded from an iPhone camera, showing approaching a Keurig coffee pod and putting it into the machine. Only <span class="hand-highlight">HAND's</span> top match is relevant for both hand demonstrations.
+          </div>
+
+          <br><br><br>
+
+          <h3 class="title is-3">User Study</h3>
+
+          <h4 class="title is-4" style="color: #cc0000;">HAND enables real-time, data-efficient policy learning of long-horizon tasks.</h4>
+
+          <div style="text-align: center;">
+            <img src="./static/images/teleop_study.png" alt="teleop_study">
+          </div>
+
+          <div class="content has-text-justified" style="font-size: 18px; text-align: center;">
+            Two users, unfamiliar with <span class="hand-highlight">HAND</span>, are asked to collect trajectories either via teleoperation (Left) or using their hands (Right) for the $\texttt{Put Keurig in Coffee Machine}$ task. 
+            <span class="hand-highlight">HAND</span> retrieval achieves an \todo{XX} success rate with the same amount of demonstrations using only \todo{XX} less time.
+          </div>
+
+          <div style="text-align: center;">
+            <img src="./static/images/fast_adaptation_study.png" alt="fast_adaptation_study">
+          </div>
+
+          <div class="content has-text-justified" style="font-size: 18px; text-align: center;">
+            We conduct a small-scale user study to demonstrate <span class="hand-highlight">HAND's</span> ability to learn robot policies in real-time.
+            From providing the hand demonstration (Left), to retrieval and fine-tuning a base policy (Middle), to evaluating the policy (Right), we show that <span class="hand-highlight">HAND</span> can learn to solve the $\texttt{Blend Carrot}$ task with over $70\%$ success rate in less than 3 minutes.
+          </div>
+
+
+          <div style="text-align: center;">
+            <img src="./static/images/user_study.png" alt="user_study" style="width: 50%;">
+          </div>
+
+          <br><br><br>
+
+          <!-- Add new section here -->
+          <h3 class="title is-3">Evaluation Videos</h3>
+          
+          <div class="content">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px;">
+              <!-- Reach Task -->
+              <div style="text-align: center;">
+                <h4 class="title is-5">Reach Green Block</h4>
+                <p><strong><span class="strap-highlight">STRAP</span> (Baseline)</strong></p>
+                <img src="./static/eval_vids/reach_block_fail.gif" alt="STRAP reach failure" style="width: 100%;">
+              </div>
+              <div style="text-align: center;">
+                <h4 class="title is-5">&nbsp;</h4>
+                <p><strong><span class="hand-highlight">HAND</span> (Ours)</strong></p>
+                <img src="./static/eval_vids/reach_block_success.gif" alt="HAND reach success" style="width: 100%;">
+              </div>
+
+              <!-- Push Button Task -->
+              <div style="text-align: center;">
+                <h4 class="title is-5">Push Button</h4>
+                <p><strong><span class="strap-highlight">STRAP</span> (Baseline)</strong></p>
+                <img src="./static/eval_vids/push_button_fail.gif" alt="STRAP push failure" style="width: 100%;">
+              </div>
+              <div style="text-align: center;">
+                <h4 class="title is-5">&nbsp;</h4>
+                <p><strong><span class="hand-highlight">HAND</span> (Ours)</strong></p>
+                <img src="./static/eval_vids/push_button_success.gif" alt="HAND push success" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px;">
+              <!-- Close Microwave -->
+              <div style="text-align: center;">
+                <h4 class="title is-5">Close Microwave</h4>
+                <img src="./static/eval_vids/close_microwave_fail.gif" alt="STRAP close microwave failure" style="width: 100%;">
+              </div>
+              <div style="text-align: center;">
+                <h4 class="title is-5">&nbsp;</h4>
+                <img src="./static/eval_vids/close_microwave_success.gif" alt="HAND reach success" style="width: 100%;">
+              </div>
+              
+              <!-- Keurig Coffee Machine -->
+              <div style="text-align: center;">
+                <h4 class="title is-6">Put Keurig in Coffee Machine</h4>
+                <img src="./static/eval_vids/keurig_user1_fail.gif" alt="STRAP keurig failure" style="width: 100%;">
+              </div>
+              <div style="text-align: center;">
+                <h4 class="title is-5">&nbsp;</h4>
+                <img src="./static/eval_vids/keurig_user1_success.gif" alt="HAND keurig success" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px;">
+              <!-- Carrot Blender -->
+              <div style="text-align: center;">
+                <h4 class="title is-5">Carrot Blender</h4>
+                <img src="./static/eval_vids/carrot_blender_button_fail.gif" alt="STRAP carrot blender failure" style="width: 100%;">
+              </div>
+              <div style="text-align: center;">
+                <h4 class="title is-5">&nbsp;</h4>
+                <img src="./static/eval_vids/carrot_blender_button_success.gif" alt="HAND carrot blender success" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <!-- <div class="content has-text-centered">
+          <a class="icon-link"
+            href="./static/videos/nerfies_paper.pdf">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+        </div> -->
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+              <p>
+                Website design borrowed from <a
+                  href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
